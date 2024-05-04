@@ -1,6 +1,7 @@
 import { serverClient } from "@/lib/supabase/server";
 
 import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/ModeToggle";
 
 export default async function Home() {
   const supabase = serverClient();
@@ -20,7 +21,6 @@ export default async function Home() {
   return (
     <>
       <Button>Click me</Button>
-
       <ul>
         {evaluations?.map((evaluation) => (
           <li key={evaluation.id}>

@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { serverClient } from "@/lib/supabase/server";
+import Header from "@/components/layout/Header";
 
 export default async function RootLayout({
   children,
@@ -15,8 +16,11 @@ export default async function RootLayout({
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start p-24">
-      {children}
-    </main>
+    <>
+      <Header />
+      <main className="flex min-h-screen flex-col items-center justify-start p-24">
+        {children}
+      </main>
+    </>
   );
 }
