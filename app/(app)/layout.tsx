@@ -18,7 +18,7 @@ export default async function RootLayout({
   return (
     <>
       <Header />
-      <main className="flex min-h-screen flex-col items-center justify-start p-24">
+      <main className="mx-auto flex min-h-screen w-full max-w-7xl flex-col p-4">
         {children}
       </main>
     </>
