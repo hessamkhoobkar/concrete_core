@@ -1,14 +1,28 @@
 import { serverClient } from "@/lib/supabase/server";
 
-import { Button } from "@/components/ui/button";
-import { ModeToggle } from "@/components/ModeToggle";
+import EvaluationTable from "@/components/dashboard/EvaluationTable";
+import Summery from "@/components/dashboard/Summery";
+
+interface ProfileType {
+  id: string;
+  full_name: string;
+}
+
+interface Evaluation {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  client_id: ProfileType;
+  status: string;
+  debt: boolean;
+}
 
 export default async function Home() {
   const supabase = serverClient();
 
-  const { data: evaluations, error } = await supabase
+  const { data, error } = await supabase
     .from("evaluations")
-    .select();
+    .select(`*, client_id(id, full_name)`);
 
   if (error) {
     return (
@@ -18,19 +32,13 @@ export default async function Home() {
     );
   }
 
+  const evaluations = data as Evaluation[];
+
   return (
     <>
-      <Button>Click me</Button>
-      <ul>
-        {evaluations?.map((evaluation) => (
-          <li key={evaluation.id}>
-            {evaluation.id}
-            {evaluation.created_at}
-            {evaluation.status}
-            {evaluation.debt}
-          </li>
-        ))}
-      </ul>
+      <Summery />
+      <EvaluationTable evaluations={evaluations} />
+      <EvaluationTable evaluations={evaluations} />
     </>
   );
 }
