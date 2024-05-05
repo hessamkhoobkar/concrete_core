@@ -38,7 +38,6 @@ export default async function Home() {
     <>
       <Summery />
       <EvaluationTable evaluations={evaluations} />
-      <EvaluationTable evaluations={evaluations} />
     </>
   );
 }

@@ -23,18 +23,26 @@ export default async function Header() {
     .single();
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl justify-between p-4">
-      <div className="relative h-10 w-[118px]">
-        <Image src="/logo.png" alt="concrete core logo" fill={true} />
-      </div>
-      <div className="flex gap-2">
-        <Notifications />
-        <div className="h-full w-px bg-concrete-600"></div>
-        <ProfileDropdown
-          avatar_url={profile?.avatar_url}
-          full_name={profile?.full_name}
-          email={user?.email!}
-        />
+    <div
+      className="h-48 w-full"
+      style={{
+        backgroundColor: "#0e1218",
+        backgroundImage: 'url("/asfalt-light.png")',
+      }}
+    >
+      <div className="mx-auto flex w-full max-w-7xl justify-between p-4">
+        <div className="relative h-10 w-[118px]">
+          <Image src="/logo.png" alt="concrete core logo" fill={true} />
+        </div>
+        <div className="flex gap-2">
+          <Notifications />
+          <div className="h-full w-px bg-concrete-600"></div>
+          <ProfileDropdown
+            avatar_url={profile?.avatar_url}
+            full_name={profile?.full_name}
+            email={user?.email!}
+          />
+        </div>
       </div>
     </div>
   );

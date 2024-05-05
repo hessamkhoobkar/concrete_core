@@ -28,7 +28,7 @@ export default function EvaluationTable({
   evaluations: Evaluation[];
 }) {
   return (
-    <Table>
+    <Table className="mt-8">
       <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader>
         <TableRow>
