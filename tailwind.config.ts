@@ -20,7 +20,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
+        sans: ["IBM Plex Sans", ...fontFamily.sans],
+        mono: ["IBM Plex Mono", ...fontFamily.mono],
       },
       colors: {
         border: "hsl(var(--border))",
