@@ -24,7 +24,7 @@ export default async function Header() {
 
   return (
     <div
-      className="h-48 w-full"
+      className="h-48 w-full border-b border-border"
       style={{
         backgroundColor: "#0e1218",
         backgroundImage: 'url("/asfalt-light.png")',
