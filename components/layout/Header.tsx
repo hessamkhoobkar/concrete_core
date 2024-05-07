@@ -4,6 +4,7 @@ import { serverClient } from "@/lib/supabase/server";
 
 import ProfileDropdown from "@/components/header/ProfileDropdown";
 import Notifications from "@/components/header/Notifications";
+import Link from "next/link";
 
 export default async function Header() {
   const supabase = serverClient();
@@ -32,7 +33,9 @@ export default async function Header() {
     >
       <div className="mx-auto flex w-full max-w-7xl justify-between p-4">
         <div className="relative h-10 w-[118px]">
-          <Image src="/logo.png" alt="concrete core logo" fill={true} />
+          <Link href="/">
+            <Image src="/logo.png" alt="concrete core logo" fill={true} />
+          </Link>
         </div>
         <div className="flex gap-2">
           <Notifications />
