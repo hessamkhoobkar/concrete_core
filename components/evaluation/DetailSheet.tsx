@@ -1,4 +1,3 @@
-import { Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -10,12 +9,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { SquareArrowOutUpRight } from "lucide-react";
 
 export default function DetailSheet() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline">View</Button>
+        <Button variant="outline">
+          <span className="sr-only">Open Details</span>
+          <SquareArrowOutUpRight className="h-4 w-4" />
+        </Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>

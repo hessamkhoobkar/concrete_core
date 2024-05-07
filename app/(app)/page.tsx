@@ -1,7 +1,9 @@
 import { serverClient } from "@/lib/supabase/server";
 
-import EvaluationTable from "@/components/dashboard/EvaluationTable";
 import Summery from "@/components/dashboard/Summery";
+
+import { columns } from "@/components/table/columns";
+import { DataTable } from "@/components/table/data-table";
 
 interface ProfileType {
   id: string;
@@ -36,8 +38,8 @@ export default async function Home() {
 
   return (
     <>
-      <Summery />
-      <EvaluationTable evaluations={evaluations} />
+      <Summery evaluations={evaluations} />
+      <DataTable columns={columns} data={evaluations} />
     </>
   );
 }
