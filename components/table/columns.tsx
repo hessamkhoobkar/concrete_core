@@ -166,7 +166,7 @@ export const columns: ColumnDef<Evaluation>[] = [
     cell: ({ row }) => {
       const evaluation = row.original;
 
-      return <DetailSheet />;
+      return <DetailSheet id={evaluation.id} />;
     },
   },
 ];

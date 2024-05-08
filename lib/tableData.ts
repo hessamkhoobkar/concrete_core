@@ -3,7 +3,6 @@ export function caseId(id: number): string {
 }
 
 const DateOptions: Intl.DateTimeFormatOptions = {
-  weekday: "short",
   year: "numeric",
   month: "short",
   day: "numeric",
