@@ -91,7 +91,7 @@ export default function Summery({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex w-full grow items-end justify-end">
+          <div className="flex w-full grow items-end justify-end gap-1">
             <div
               className="relative flex h-8 items-center justify-start bg-primary/100 px-2"
               style={{ width: `${openPercent}%` }}
@@ -115,13 +115,13 @@ export default function Summery({
               </span>
             </div>
             <div
-              className="relative flex h-8 items-center justify-start bg-primary/40 px-2"
+              className="relative flex h-8 items-center justify-start bg-primary/30 px-2"
               style={{ width: `${inProgressPercent}%` }}
             >
               <span className="absolute bottom-full left-0 text-xs text-concrete-400">
                 In Progress
               </span>
-              <span className="text-xl font-bold text-concrete-800">
+              <span className="text-xl font-bold text-primary">
                 {inProgressNumber}
               </span>
             </div>
