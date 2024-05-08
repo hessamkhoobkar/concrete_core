@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/sheet";
 import { SquareArrowOutUpRight } from "lucide-react";
 import { DateFormater, caseId } from "@/lib/tableData";
+import { Skeleton } from "../ui/skeleton";
 
 interface ProfileType {
   id: string;
@@ -34,6 +35,7 @@ export default function DetailSheet({ id }: { id: number }) {
 
   const [activeEvaluation, setActiveEvaluation] = useState<Evaluation>();
   const [openCall, setOpenCall] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const getEvaluations = useCallback(async () => {
     const { data: evaluation, error } = await supabase
@@ -43,6 +45,7 @@ export default function DetailSheet({ id }: { id: number }) {
 
     if (evaluation) {
       setActiveEvaluation(evaluation[0]);
+      setLoading(false);
     }
   }, [id, supabase, setActiveEvaluation]);
 
@@ -69,32 +72,53 @@ export default function DetailSheet({ id }: { id: number }) {
             Case details and last state of samples and the case.
           </SheetDescription>
         </SheetHeader>
-
         <div className="grid grid-cols-2 grid-rows-2 gap-4 border-t border-border p-6">
           <div className="flex flex-col">
             <span className="text-xs text-concrete-400">Case ID:</span>
             <span className="">
-              {activeEvaluation ? caseId(activeEvaluation?.id) : "NA"}
+              {loading ? (
+                <Skeleton className="mt-1 h-4 w-28" />
+              ) : activeEvaluation ? (
+                caseId(activeEvaluation?.id)
+              ) : (
+                "NA"
+              )}
             </span>
           </div>
           <div className="flex flex-col">
             <span className="text-xs text-concrete-400">Customer:</span>
-            <span className="">{activeEvaluation?.client_id.full_name}</span>
+            <span className="">
+              {loading ? (
+                <Skeleton className="mt-1 h-4 w-28" />
+              ) : activeEvaluation ? (
+                activeEvaluation?.client_id.full_name
+              ) : (
+                "NA"
+              )}
+            </span>
           </div>
           <div className="flex flex-col">
             <span className="text-xs text-concrete-400">Entry Date:</span>
             <span className="">
-              {activeEvaluation
-                ? DateFormater(activeEvaluation.created_at)
-                : "NA"}
+              {loading ? (
+                <Skeleton className="mt-1 h-4 w-28" />
+              ) : activeEvaluation ? (
+                DateFormater(activeEvaluation.created_at)
+              ) : (
+                "NA"
+              )}
             </span>
           </div>
           <div className="flex flex-col">
             <span className="text-xs text-concrete-400">Result Date:</span>
             <span className="">
-              {activeEvaluation
-                ? DateFormater(activeEvaluation.updated_at)
-                : "NA"}
+              {loading ? (
+                <Skeleton className="mt-1 h-4 w-28" />
+              ) : activeEvaluation ? (
+                DateFormater(activeEvaluation.updated_at)
+              ) : (
+                "NA"
+              )}
             </span>
           </div>
         </div>
@@ -108,7 +132,13 @@ export default function DetailSheet({ id }: { id: number }) {
                 activeEvaluation?.debt ? "text-destructive" : "text-primary"
               }
             >
-              {activeEvaluation?.debt ? "Unpaid" : "Paid"}
+              {loading ? (
+                <Skeleton className="h-6 w-28" />
+              ) : activeEvaluation?.debt ? (
+                "Unpaid"
+              ) : (
+                "Paid"
+              )}
             </span>
             <span className="text-xs">
               {activeEvaluation?.debt
@@ -116,13 +146,18 @@ export default function DetailSheet({ id }: { id: number }) {
                 : "This case payment has been successfully processed."}
             </span>
           </div>
-          <Button
-            variant="default"
-            className="w-full"
-            disabled={!activeEvaluation?.debt}
-          >
-            Pay
-          </Button>
+
+          {loading ? (
+            <Skeleton className="h-10 w-full" />
+          ) : (
+            <Button
+              variant="default"
+              className="w-full"
+              disabled={!activeEvaluation?.debt}
+            >
+              Pay
+            </Button>
+          )}
         </div>
       </SheetContent>
     </Sheet>
