@@ -25,35 +25,116 @@ export default function Summery({
 }: {
   evaluations: Evaluation[];
 }) {
+  let openNumber = 0;
+  let pendingNumber = 0;
+  let inProgressNumber = 0;
+  let confirmationNumber = 0;
+  let UnpaidNumber = 0;
+
+  evaluations.map((evaluation) => {
+    if (evaluation.status === "Open") {
+      openNumber++;
+    }
+    if (evaluation.status === "Pending Samples") {
+      pendingNumber++;
+    }
+    if (evaluation.status === "In Progress") {
+      inProgressNumber++;
+    }
+    if (evaluation.status === "Confirmation") {
+      confirmationNumber++;
+    }
+    if (evaluation.status === "Open" && evaluation.debt) {
+      UnpaidNumber++;
+    }
+
+    return;
+  });
+
+  const totalNumber =
+    openNumber + pendingNumber + inProgressNumber + confirmationNumber;
+
+  let openPercent = (openNumber * 100) / totalNumber;
+  let pendingPercent = (pendingNumber * 100) / totalNumber;
+  let inProgressPercent = (inProgressNumber * 100) / totalNumber;
+  let confirmationPercent = (confirmationNumber * 100) / totalNumber;
+
   return (
     <div className="grid grid-cols-4 grid-rows-1 gap-4">
       <Card className="col-span-1 row-span-1">
-        <CardContent>Hello world</CardContent>
-      </Card>
-      <Card className="col-span-1 row-span-1">
-        <CardContent>Open and on going</CardContent>
-      </Card>
-      <Card className="col-span-2 row-span-1">
         <CardHeader>
-          <CardTitle>Evaluations results</CardTitle>
-          <CardDescription>Card Description</CardDescription>
+          <CardTitle>Unattended cases</CardTitle>
+          <CardDescription>Number of open cases</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex items-end gap-4">
-            <div className="h-8 w-8 bg-primary"></div>
-            <div className="flex grow">
-              <div className="h-4 w-3/4 bg-primary"></div>
-              <div className="h-4 w-1/4 bg-destructive"></div>
+          <span className="text-6xl font-bold text-destructive">
+            {openNumber}
+          </span>
+        </CardContent>
+      </Card>
+      <Card className="col-span-1 row-span-1">
+        <CardHeader>
+          <CardTitle>Unpaid cases</CardTitle>
+          <CardDescription>Number of unpaid finished cases</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <span className="text-6xl font-bold text-warning">
+            {UnpaidNumber}
+          </span>
+        </CardContent>
+      </Card>
+      <Card className="col-span-2 row-span-1 flex flex-col justify-between">
+        <CardHeader>
+          <CardTitle>In Progress States</CardTitle>
+          <CardDescription>
+            The portion of cases that are currently ongoing
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex w-full grow items-end justify-end">
+            <div
+              className="relative flex h-8 items-center justify-start bg-primary/100 px-2"
+              style={{ width: `${openPercent}%` }}
+            >
+              <span className="absolute bottom-full left-0 text-xs text-concrete-400">
+                Open
+              </span>
+              <span className="text-xl font-bold text-concrete-800">
+                {openNumber}
+              </span>
             </div>
-            <div className="flex w-24 flex-col">
-              <div className="flex items-center gap-2">
-                <div className="h-2 w-2 bg-primary"></div>
-                <span className="text-xs">Sucssesed</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="h-2 w-2 bg-destructive"></div>
-                <span className="text-xs">Failed</span>
-              </div>
+            <div
+              className="relative flex h-8 items-center justify-start bg-primary/70 px-2"
+              style={{ width: `${pendingPercent}%` }}
+            >
+              <span className="absolute bottom-full left-0 text-xs text-concrete-400">
+                Pending Samples
+              </span>
+              <span className="text-xl font-bold text-concrete-800">
+                {pendingNumber}
+              </span>
+            </div>
+            <div
+              className="relative flex h-8 items-center justify-start bg-primary/40 px-2"
+              style={{ width: `${inProgressPercent}%` }}
+            >
+              <span className="absolute bottom-full left-0 text-xs text-concrete-400">
+                In Progress
+              </span>
+              <span className="text-xl font-bold text-concrete-800">
+                {inProgressNumber}
+              </span>
+            </div>
+            <div
+              className="relative flex h-8 items-center justify-start bg-primary/10 px-2"
+              style={{ width: `${confirmationPercent}%` }}
+            >
+              <span className="absolute bottom-full left-0 text-xs text-concrete-400">
+                Confirmation
+              </span>
+              <span className="text-xl font-bold text-primary">
+                {confirmationNumber}
+              </span>
             </div>
           </div>
         </CardContent>
