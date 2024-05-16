@@ -4,6 +4,7 @@ import { serverClient } from "@/lib/supabase/server";
 
 import ProfileDropdown from "@/components/header/ProfileDropdown";
 import Notifications from "@/components/header/Notifications";
+import NavMenu from "@/components/header/NavMenu";
 import Link from "next/link";
 
 export default async function Header() {
@@ -23,12 +24,13 @@ export default async function Header() {
     .eq("id", user?.id)
     .single();
 
+  // 0e1218
   return (
     <div
       className="h-48 w-full border-b border-border"
       style={{
-        backgroundColor: "#0e1218",
-        backgroundImage: 'url("/asfalt-light.png")',
+        backgroundColor: "#EFF3FF",
+        backgroundImage: 'url("/concrete-wall.png")',
       }}
     >
       <div className="mx-auto flex w-full max-w-7xl justify-between p-4">
@@ -38,8 +40,9 @@ export default async function Header() {
           </Link>
         </div>
         <div className="flex gap-2">
-          <Notifications />
-          <div className="h-full w-px bg-concrete-600"></div>
+          <NavMenu />
+          {/* <Notifications /> */}
+          <div className="h-full w-px bg-concrete-200"></div>
           <ProfileDropdown
             avatar_url={profile?.avatar_url}
             full_name={profile?.full_name}

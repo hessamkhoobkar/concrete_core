@@ -34,10 +34,12 @@ export default function ProfileDropdown({
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="gap-2 p-0">
           <div className="flex flex-col items-end justify-start">
-            <span className="text-base">{full_name}</span>
-            <span className="text-xs text-concrete-400">{email}</span>
+            <span className="font-mono text-base font-bold text-concrete-700">
+              {full_name}
+            </span>
+            <span className="font-mono text-xs text-concrete-400">{email}</span>
           </div>
-          <Avatar className="rounded-none">
+          <Avatar className="h-10 w-10 rounded-none border border-concrete-200">
             <AvatarImage src={avatar_url} />
             <AvatarFallback className="rounded-none">{initials}</AvatarFallback>
           </Avatar>

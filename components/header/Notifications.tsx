@@ -15,8 +15,12 @@ export default function Notifications() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Bell className="h-4 w-4" />
+        <Button
+          variant="outline"
+          size="icon"
+          className="border-concrete-200 bg-concrete-100 text-concrete-800 hover:text-concrete-100"
+        >
+          <Bell className="h-4 w-4 " />
         </Button>
       </SheetTrigger>
       <SheetContent>
