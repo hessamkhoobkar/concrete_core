@@ -24,7 +24,8 @@ export default async function Home() {
 
   const { data, error } = await supabase
     .from("evaluations")
-    .select(`*, client_id(id, full_name)`);
+    .select(`*, client_id(id, full_name)`)
+    .order("created_at", { ascending: false });
 
   if (error) {
     return (
