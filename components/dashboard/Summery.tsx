@@ -63,7 +63,7 @@ export default function Summery({
     <div className="grid grid-cols-4 grid-rows-1 gap-4">
       <Card className="col-span-1 row-span-1">
         <CardHeader>
-          <CardTitle>Unattended cases</CardTitle>
+          <CardTitle className="font-mono">Unattended cases</CardTitle>
           <CardDescription>Number of open cases</CardDescription>
         </CardHeader>
         <CardContent>
@@ -74,7 +74,7 @@ export default function Summery({
       </Card>
       <Card className="col-span-1 row-span-1">
         <CardHeader>
-          <CardTitle>Unpaid cases</CardTitle>
+          <CardTitle className="font-mono">Unpaid cases</CardTitle>
           <CardDescription>Number of unpaid finished cases</CardDescription>
         </CardHeader>
         <CardContent>
@@ -85,7 +85,7 @@ export default function Summery({
       </Card>
       <Card className="col-span-2 row-span-1 flex flex-col justify-between">
         <CardHeader>
-          <CardTitle>In Progress States</CardTitle>
+          <CardTitle className="font-mono">In Progress States</CardTitle>
           <CardDescription>
             The portion of cases that are currently ongoing
           </CardDescription>
@@ -96,7 +96,7 @@ export default function Summery({
               className="relative flex h-8 items-center justify-start bg-primary/100 px-2"
               style={{ width: `${openPercent}%` }}
             >
-              <span className="absolute bottom-full left-0 text-xs text-concrete-400">
+              <span className="absolute bottom-full left-0 font-mono text-xs text-concrete-400">
                 Open
               </span>
               <span className="text-xl font-bold text-concrete-800">
@@ -107,7 +107,7 @@ export default function Summery({
               className="relative flex h-8 items-center justify-start bg-primary/70 px-2"
               style={{ width: `${pendingPercent}%` }}
             >
-              <span className="absolute bottom-full left-0 text-xs text-concrete-400">
+              <span className="absolute bottom-full left-0 font-mono text-xs text-concrete-400">
                 Pending Samples
               </span>
               <span className="text-xl font-bold text-concrete-800">
@@ -118,7 +118,7 @@ export default function Summery({
               className="relative flex h-8 items-center justify-start bg-primary/30 px-2"
               style={{ width: `${inProgressPercent}%` }}
             >
-              <span className="absolute bottom-full left-0 text-xs text-concrete-400">
+              <span className="absolute bottom-full left-0 font-mono text-xs text-concrete-400">
                 In Progress
               </span>
               <span className="text-xl font-bold text-primary">
@@ -129,7 +129,7 @@ export default function Summery({
               className="relative flex h-8 items-center justify-start bg-primary/10 px-2"
               style={{ width: `${confirmationPercent}%` }}
             >
-              <span className="absolute bottom-full left-0 text-xs text-concrete-400">
+              <span className="absolute bottom-full left-0 font-mono text-xs text-concrete-400">
                 Confirmation
               </span>
               <span className="text-xl font-bold text-primary">
