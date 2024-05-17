@@ -34,12 +34,6 @@ export default function NewItemReq() {
             <span>Add new sample</span>
           </DropdownMenuItem>
         </Link>
-        <Link href="/clients/new">
-          <DropdownMenuItem className="cursor-pointer">
-            <UserPlus className="mr-2 h-4 w-4" />
-            <span>Add new client</span>
-          </DropdownMenuItem>
-        </Link>
       </DropdownMenuContent>
     </DropdownMenu>
   );
