@@ -1,7 +1,7 @@
 import { serverClient } from "@/lib/supabase/server";
 import Image from "next/image";
 
-export default async function Home() {
+export default async function ClientPage() {
   const supabase = serverClient();
 
   const { data, error } = await supabase
@@ -25,10 +25,30 @@ export default async function Home() {
             key={client.id}
             className="col-span-1 row-span-1 flex flex-col bg-card p-4"
           >
-            <span>{client.full_name}</span>
-            <span>{client.gender}</span>
-            <span>{client.email}</span>
-            <span>{client.phone_number}</span>
+            <div className="flex w-full justify-between gap-2">
+              <span className="font-mono font-bold text-concrete-400">
+                Full name:
+              </span>
+              <span>{client.full_name}</span>
+            </div>
+            <div className="flex w-full justify-between gap-2">
+              <span className="font-mono font-bold text-concrete-400">
+                Gender:
+              </span>
+              <span>{client.gender}</span>
+            </div>
+            <div className="flex w-full justify-between gap-2">
+              <span className="font-mono font-bold text-concrete-400">
+                Email:
+              </span>
+              <span>{client.email}</span>
+            </div>
+            <div className="flex w-full justify-between gap-2">
+              <span className="font-mono font-bold text-concrete-400">
+                Phone number:
+              </span>
+              <span>{client.phone_number}</span>
+            </div>
           </div>
         ))}
       </div>
