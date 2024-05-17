@@ -32,7 +32,10 @@ export default function ProfileDropdown({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="gap-2 p-0">
+        <Button
+          variant="ghost"
+          className="gap-2 p-0 ps-2 hover:bg-concrete-100"
+        >
           <div className="flex flex-col items-end justify-start">
             <span className="font-mono text-base font-bold text-concrete-700">
               {full_name}

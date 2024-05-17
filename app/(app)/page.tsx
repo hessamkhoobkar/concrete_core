@@ -1,7 +1,6 @@
 import { serverClient } from "@/lib/supabase/server";
 
 import Summery from "@/components/dashboard/Summery";
-
 import { columns } from "@/components/table/columns";
 import { DataTable } from "@/components/table/data-table";
 
