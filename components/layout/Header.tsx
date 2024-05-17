@@ -6,6 +6,7 @@ import ProfileDropdown from "@/components/header/ProfileDropdown";
 import Notifications from "@/components/header/Notifications";
 import NavMenu from "@/components/header/NavMenu";
 import Link from "next/link";
+import NewItemReq from "@/components/header/NewItemList";
 
 export default async function Header() {
   const supabase = serverClient();
@@ -24,7 +25,6 @@ export default async function Header() {
     .eq("id", user?.id)
     .single();
 
-  // 0e1218
   return (
     <div
       className="h-48 w-full border-b border-border"
@@ -41,6 +41,7 @@ export default async function Header() {
         </div>
         <div className="flex gap-2">
           <NavMenu />
+          <NewItemReq />
           {/* <Notifications /> */}
           <div className="h-full w-px bg-concrete-200"></div>
           <ProfileDropdown
