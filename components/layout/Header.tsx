@@ -41,7 +41,7 @@ export default async function Header() {
         </div>
         <div className="flex gap-2">
           <NavMenu />
-          <NewItemReq />
+          {/* <NewItemReq /> */}
           {/* <Notifications /> */}
           <div className="h-full w-px bg-concrete-200"></div>
           <ProfileDropdown
