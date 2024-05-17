@@ -3,7 +3,8 @@
 import { browserClient } from "@/lib/supabase/client";
 import { useCallback, useEffect, useState } from "react";
 
-import { Button } from "@/components/ui/button";
+import { SquareArrowOutUpRight } from "lucide-react";
+
 import {
   Sheet,
   SheetContent,
@@ -12,10 +13,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { SquareArrowOutUpRight } from "lucide-react";
-import { DateFormater, caseId } from "@/lib/tableData";
-import { Skeleton } from "../ui/skeleton";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 
+import CurrentState from "@/components/evaluation/CurrentState";
+
+import { DateFormater, caseId } from "@/lib/tableData";
+import CasePayment from "./CasePayment";
 interface ProfileType {
   id: string;
   full_name: string;
@@ -50,9 +54,7 @@ export default function DetailSheet({ id }: { id: number }) {
   }, [id, supabase, setActiveEvaluation]);
 
   useEffect(() => {
-    console.log("useEffect triggered: openCall =", openCall);
     if (openCall) {
-      console.log("Calling getEvaluations");
       getEvaluations();
     }
   }, [openCall, getEvaluations]);
@@ -122,43 +124,15 @@ export default function DetailSheet({ id }: { id: number }) {
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-4 border-t border-border p-6">
-          <span className="font-mono text-xl font-bold text-concrete-400">
-            Payment Status:
-          </span>
-          <div className="mb-3 flex flex-col gap-1">
-            <span
-              className={
-                activeEvaluation?.debt ? "text-destructive" : "text-primary"
-              }
-            >
-              {loading ? (
-                <Skeleton className="h-6 w-28" />
-              ) : activeEvaluation?.debt ? (
-                "Unpaid"
-              ) : (
-                "Paid"
-              )}
-            </span>
-            <span className="text-xs">
-              {activeEvaluation?.debt
-                ? "This case has outstanding invoices."
-                : "This case payment has been successfully processed."}
-            </span>
-          </div>
-
-          {loading ? (
-            <Skeleton className="h-10 w-full" />
-          ) : (
-            <Button
-              variant="default"
-              className="w-full"
-              disabled={!activeEvaluation?.debt}
-            >
-              Pay
-            </Button>
-          )}
-        </div>
+        <CasePayment
+          id={id}
+          debtState={activeEvaluation?.status}
+          loading={loading}
+        />
+        <CurrentState
+          currentState={activeEvaluation?.status}
+          loading={loading}
+        />
       </SheetContent>
     </Sheet>
   );
