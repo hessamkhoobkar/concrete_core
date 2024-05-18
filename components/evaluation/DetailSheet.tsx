@@ -42,6 +42,7 @@ export default function DetailSheet({ id }: { id: number }) {
   const [loading, setLoading] = useState<boolean>(true);
 
   const getEvaluations = useCallback(async () => {
+    setLoading(true);
     const { data: evaluation, error } = await supabase
       .from("evaluations")
       .select(`*, client_id(id, full_name)`)
@@ -126,8 +127,9 @@ export default function DetailSheet({ id }: { id: number }) {
         </div>
         <CasePayment
           id={id}
-          debtState={activeEvaluation?.status}
+          debtState={activeEvaluation?.debt}
           loading={loading}
+          updateValueReq={getEvaluations}
         />
         <CurrentState
           currentState={activeEvaluation?.status}
