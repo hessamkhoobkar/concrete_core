@@ -5,6 +5,7 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import DetailSheet from "@/components/evaluation/DetailSheet";
+import { caseId } from "@/lib/tableData";
 
 interface ProfileType {
   id: string;
@@ -42,9 +43,9 @@ export const columns: ColumnDef<Evaluation>[] = [
     },
     cell: ({ row }) => {
       const id: number = row.getValue("id");
-      const evaluationId = 1237 + id;
+      const evaluationId = caseId(id);
 
-      return <span>EV-0{evaluationId}</span>;
+      return evaluationId;
     },
   },
   {
