@@ -63,7 +63,7 @@ export default function EvaluationTable({
               <DebtBadge debt={evaluation.debt} />
             </TableCell>
             <TableCell>
-              <DetailSheet />
+              <DetailSheet id={evaluation.id} />
             </TableCell>
           </TableRow>
         ))}
