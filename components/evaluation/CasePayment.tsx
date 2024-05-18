@@ -1,20 +1,34 @@
 "use clietn";
 
+import { useRouter } from "next/navigation";
 import { browserClient } from "@/lib/supabase/client";
 
-import { Button } from "../ui/button";
-import { Skeleton } from "../ui/skeleton";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 export default function CasePayment({
   id,
   debtState,
   loading,
+  updateValueReq,
 }: {
   id: number | undefined;
-  debtState: string | undefined;
+  debtState: boolean | undefined;
   loading: boolean;
+  updateValueReq: () => void;
 }) {
   const supabase = browserClient();
+  const router = useRouter();
 
   async function updateDebt() {
     const { data, error } = await supabase
@@ -25,6 +39,14 @@ export default function CasePayment({
 
     console.log(error);
     console.log(data);
+
+    if (error) {
+      console.log(error);
+      return;
+    }
+
+    updateValueReq();
+    router.refresh();
   }
 
   return (
@@ -52,14 +74,40 @@ export default function CasePayment({
       {loading ? (
         <Skeleton className="h-10 w-full" />
       ) : (
-        <Button
-          variant="default"
-          className="w-full"
-          disabled={!debtState}
-          onClick={() => updateDebt()}
-        >
-          Pay
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="default" className="w-full" disabled={!debtState}>
+              Pay
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Are you absolutely sure?</DialogTitle>
+              <DialogDescription>
+                You are about to set the payment of the case to resolve. This
+                action in this demo cannot be undone, and the case will stay as
+                paid.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="h-4 w-full"></div>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline" type="reset">
+                  Cancel
+                </Button>
+              </DialogClose>
+              <DialogClose asChild>
+                <Button
+                  variant="default"
+                  type="submit"
+                  onClick={() => updateDebt()}
+                >
+                  Set as paid
+                </Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       )}
     </div>
   );
