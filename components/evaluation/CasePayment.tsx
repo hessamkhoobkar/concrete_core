@@ -37,9 +37,6 @@ export default function CasePayment({
       .eq("id", id)
       .select();
 
-    console.log(error);
-    console.log(data);
-
     if (error) {
       console.log(error);
       return;
