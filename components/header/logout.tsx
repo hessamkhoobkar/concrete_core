@@ -20,7 +20,7 @@ export default function LogoutMenuItem() {
   }
 
   return (
-    <DropdownMenuItem onClick={() => callSignOut()}>
+    <DropdownMenuItem className="cursor-pointer" onClick={() => callSignOut()}>
       <LogOut className="mr-2 h-4 w-4" />
       <span>Log out</span>
       <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
