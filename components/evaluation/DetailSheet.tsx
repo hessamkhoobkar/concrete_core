@@ -25,12 +25,20 @@ interface ProfileType {
   full_name: string;
 }
 
+type CaseStateType =
+  | "Open"
+  | "Pending Samples"
+  | "In Progress"
+  | "Confirmation"
+  | "Completed"
+  | "Closed";
+
 interface Evaluation {
   id: number;
   created_at: string;
   updated_at: string;
   client_id: ProfileType;
-  status: string;
+  status: CaseStateType;
   debt: boolean;
 }
 
@@ -132,7 +140,7 @@ export default function DetailSheet({ id }: { id: number }) {
           updateValueReq={getEvaluations}
         />
         <CurrentState
-          currentState={activeEvaluation?.status}
+          currentState={activeEvaluation?.status!}
           loading={loading}
         />
       </SheetContent>

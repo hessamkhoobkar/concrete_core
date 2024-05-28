@@ -1,5 +1,4 @@
 import { serverClient } from "@/lib/supabase/server";
-import Image from "next/image";
 
 export default async function ClientPage() {
   const supabase = serverClient();

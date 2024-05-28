@@ -3,6 +3,14 @@
 import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
 
+type CaseStateType =
+  | "Open"
+  | "Pending Samples"
+  | "In Progress"
+  | "Confirmation"
+  | "Completed"
+  | "Closed";
+
 const caseState = {
   Open: "The case is currently open and awaiting further action.",
   "Pending Samples": "The case is pending samples, which need to be collected.",
@@ -18,7 +26,7 @@ export default function CurrentState({
   currentState,
   loading,
 }: {
-  currentState: string | undefined;
+  currentState: CaseStateType;
   loading: boolean;
 }) {
   return (
@@ -32,7 +40,9 @@ export default function CurrentState({
             {loading ? <Skeleton className="h-6 w-28" /> : currentState}
           </span>
 
-          <span className="text-xs">{caseState[currentState]}</span>
+          <span className="text-xs">
+            {currentState ? caseState[currentState] : "Unset"}
+          </span>
         </div>
       </div>
 

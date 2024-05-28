@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
-
 import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
-
 import "./globals.css";
-
 import { cn } from "@/lib/utils";
-
 import { ThemeProvider } from "@/components/theme-provider";
 
-export const ibmSans = IBM_Plex_Sans({
+const ibmSans = IBM_Plex_Sans({
   subsets: ["latin"],
   display: "swap",
   weight: "500",
 });
 
-export const ibmMono = IBM_Plex_Mono({
+const ibmMono = IBM_Plex_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: ["500", "700"],
