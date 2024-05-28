@@ -1,5 +1,6 @@
 "use client";
-import { redirect } from "next/navigation";
+
+import { useRouter } from "next/navigation";
 import { browserClient } from "@/lib/supabase/client";
 
 import { LogOut } from "lucide-react";
@@ -10,12 +11,15 @@ import {
 
 export default function LogoutMenuItem() {
   const supabase = browserClient();
+  const router = useRouter();
 
   async function callSignOut() {
     let { error } = await supabase.auth.signOut();
 
-    if (!error) {
-      redirect("/");
+    if (error) {
+      console.log(error);
+    } else {
+      router.push("/login");
     }
   }
 
