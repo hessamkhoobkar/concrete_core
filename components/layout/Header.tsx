@@ -36,7 +36,7 @@ export default async function Header() {
       <div className="mx-auto flex w-full max-w-7xl justify-between p-4">
         <div className="relative h-10 w-[118px]">
           <Link href="/">
-            <Image src="/logo.png" alt="concrete core logo" fill={true} />
+            <Image src="/logo-t.png" alt="concrete core logo" fill={true} />
           </Link>
         </div>
         <div className="flex gap-2">
